@@ -46,8 +46,8 @@ Therefore, variability and contaminants were both included only for a randomly-c
 Despite not choosing "realistic" populations of planets and false positives in the small sub-field, it is possible to make sure the generated signals are at least realistic by using likely stellar populations.
 To do this, a set of pre-generated Besan\c{c}on stellar models sampled across the two PLATO fields in the North and South.
 
-A "Wide" field was generated using ten stripes across the field from $b=6$ to $54^\deg$ in the North and $b-54$ to $-6^\deg$ in the South. 
-Each stripe had ten bins from $l=229$ to $277^\circ}$ in the South and $l=41$ to $89^\circ}$ in the North, producing a square across the field area.
+A "Wide" field was generated using ten stripes across the field from $b=6$ to $54^{\circ}$ in the North and $b-54$ to $-6^{\circ}$ in the South. 
+Each stripe had ten bins from $l=229$ to $277^{\circ}$ in the South and $l=41$ to $89^{\circ}$ in the North, producing a square across the field area.
 Stars were generated down to $v=17$ out to 12kpc and without constraints on other parameters.
 For each generated field, the catalogue with the nearest "stripe" of stars in galactic latitude is found and used as the basic for the input catalogue.
 
@@ -90,7 +90,7 @@ In the case where this outnumbers the number of targets we are trying to generat
 
 Once we have our target stars (and associated planetary systems), we can compute some more secondary parameters such as Mass \citep[using the Mass-Radius relation of][]{weiss2014mass} surface temperature, albedo, doppler beaming coefficient, secondary eclipse impact parameter, radius ratio and surface brightness ratio.
 Then, for each planet, we generate a lightcurve using the eclipsing binary code \citet{maxted2016ellc}, and assemble the full lightcurve afterwards.
-Then, if randomly selected, stellar variability is computed for the target star (see section \ref{var}}.
+Then, if randomly selected, stellar variability is computed for the target star (see section \ref{var}).
 The planetary and variability lightcurves are then combined, interpolated to save space, and finally saved as delta magnitudes in a text file.
 
 
@@ -114,8 +114,15 @@ We also perform this step to add stellar variability (in 50\% of cases) to the b
 \subsection{Eclipsing Binaries}
 Once again target stars are selected from the Besan\c{c}on “wide” catalogue. Rather than using occurrence rates from period and radius bins, we follow the results of \citet{raghavan2010survey} and select a uniform mass between 10 and 100% the mass of the primary target. Similarly we draw a period from a normal distribution in log period space around $5.03\pm2.28$ ($152.9^{+1342}_{-137.3}$d).
 For the period and the masses oif both components, semi-major axis is calculated. Like for planets, $t_0$(eclipse time) is randomly sampled between 0 and $P$, $\omega$ from $0$ to $\pi$ and $\cos{i}$ from $-1$ to $1$.
-To produce an eccentricity, we produce an adaptable beta distribution which varies as a function of period to mimic the distribution seen in Figure 6 of \citet{raghavan2010survey} (see Fig \ref{EBecc}). 
+To produce an eccentricity, we produce an adaptable beta distribution which varies as a function of period to mimic the distribution seen in Figure 6 of \citet{raghavan2010survey} (see Fig \ref{fig:EBecc}). 
 We also set an uppoer bound to short-period EBs to match that seen in raghavan by setting the eccentricity of all EBs where $e>0.5*\log_10{P+10}$ to $0.0$.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{raghavan_Peccs.png}
+    \caption{Period-eccentricity space modified from \citet{raghavan2010survey}.}
+    \label{fig:EBecc}
+\end{figure}
 
 The next major difference is that, in order to understand the binary object injected, we must take the randomly generated secondary mass, plus parameters taken from the primary such as age and metallicity, to estimate a radius.
 To do this requires isochrones. We use Dartmouth isochrones as implemented by \citet{morton2015isochrones}. 
